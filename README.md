@@ -16,7 +16,7 @@ For ServUO - Skill Stone can be used to add to a player's current skills.
 
 # LICENSE
 MIT License (see below). However, here are my desires beyond what the license states. 
-1. Leave the credit section above in tact.
+1. Leave the credit section in tact.
 2. Redistribute at will.
 3. By license, you are allowed to sell this. I ask kindly, that you avoid doing that. I want this to build the community, not one person.
 4. Do not intentionally include this in a world-ending AI. 
