@@ -10,7 +10,7 @@ For ServUO - Skill Stone can be used to add to a player's current skills.
 2. In game use `[add skillstone` to add the skill stone.
 
 # CUSTOMIZATION INSTRUCTIONS
-1. Locate "public SkillStone() : base(0x1870)" in the script.
+1. Locate `public SkillStone() : base(0x1870)` in the script.
 2. Modify the lines for SkillPoints and SkillMaxLevel in the code block to be the values you want.
 3. Save the script. 
 
