@@ -3,7 +3,7 @@
 SkillStone.cs
 Created By: Poolmanjim
 Last Updated: 03/05/2021
-VersioN: 0.9.0 Beta
+VersioN: 0.9.1 Beta
 GitHub Link: https://github.com/poolmanjim/SkillStone
 
 DESCRIPTION
@@ -265,7 +265,7 @@ namespace Server.Items
                             m_Player.SendMessage( 2117, String.Format("You cannot set your skill {0} to a value that is not a number.",targetSkill.Name) );
                         }
 
-                        skillDiff =  newSkillValue - targetSkill.Value;
+                        skillDiff =  newSkillValue - targetSkill.Base;
 
                         // Rules out some weird conditions with adding.
                         if( skillDiff < 0 )
@@ -293,7 +293,7 @@ namespace Server.Items
                                 m_Player.SendMessage( 2117, String.Format( "You cannot set your skill in {0} any higher. Current: {1}/{2}. Use a PowerScroll to go higher.", targetSkill.Name, targetSkill.Base, targetSkill.Cap ) );
                                 m_Player.SendMessage( newSkillValue.ToString() );
                             }
-                            else if( (m_Player.Skills.Cap / 10) < ( (m_Player.SkillsTotal / 10) + (skillDiff * 10) ) ) // Skill max
+                            else if( m_Player.Skills.Cap  < ((m_Player.SkillsTotal ) + (skillDiff * 10)) ) // Skill max
                             {
                                 m_Player.SendMessage( 2117, "You cannot set your skill any higher. You are at the skill cap of the server.");
                             }
@@ -304,7 +304,7 @@ namespace Server.Items
                             else
                             {
                                 targetSkill.Base = newSkillValue;
-                                m_SkillStone.SkillPoints -= (int)(newSkillValue * 10);
+                                m_SkillStone.SkillPoints -= (int)(skillDiff * 10);
                                 m_Player.SendMessage( String.Format("Set your {0} skill to {1}. The stone's power drains. You have {2} points remaining.", targetSkill.Name, newSkillValue, m_SkillStone.SkillPoints.ToString() ) );
                             }
                         }
