@@ -1,6 +1,10 @@
 # SkillStone.cs
 For ServUO - Skill Stone can be used to add to a player's current skills.
 
+# FILE HASH
+(SHA256) 028F144E0861CE6511B070FDF01DCB5394595259CF8F9FFB5B4437A9B808AACE
+(MD5) C1031C1E1C939BD0C759DBDCECE4E1E2
+
 # INSTALLATION INSTRUCTIONS
 1. Copy SkillStone.cs into your ServUO scripts folder. 
 2. In game use [add skillstone to add the skill stone.
