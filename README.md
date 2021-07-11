@@ -2,8 +2,8 @@
 For ServUO - Skill Stone can be used to add to a player's current skills.
 
 # FILE HASH
-- (SHA256) 0DAA06D81A62F5271C9383142B10624B496EB217EF2D3D39E74FD1873E54D0D5
-- (MD5) A3F8524176FFDE0790FAE0145D4EB2B9
+- (SHA256) FBA4FC36A3801FCAFF8B250532FC057B053B27939565172504D93243F2CB0CA4
+- (MD5) D460A1C841898695E225CF3C6294ECA2
 
 # INSTALLATION INSTRUCTIONS
 1. Copy SkillStone.cs into your ServUO scripts folder. 
@@ -18,7 +18,7 @@ For ServUO - Skill Stone can be used to add to a player's current skills.
 MIT License (see below). However, here are my desires beyond what the license states. 
 1. Leave the credit section in tact.
 2. Redistribute at will.
-3. By license, you are allowed to sell this. I ask kindly, that you avoid doing that. I want this to build the community, not one person.
+3. By license, you are allowed to sell this. I ask, kindly, that you avoid doing that. I want this to build the community, not one person.
 4. Do not intentionally include this in a world-ending AI. 
 
 Copyright (c) 2021 Poolmanjim

@@ -2,8 +2,8 @@
 /* ****************************************************
 SkillStone.cs
 Created By: Poolmanjim
-Last Updated: 03/05/2021
-VersioN: 0.9.1 Beta
+Last Updated: 07/11/2021
+VersioN: 0.9.2 Beta
 GitHub Link: https://github.com/poolmanjim/SkillStone
 
 DESCRIPTION
@@ -45,6 +45,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+*********
+CHANGE LOG
+    v0.9.2
+        Fixed bug causing crash if the stone was used, server rebooted, and it was used again.
+
 **************************************************** */
 using System;
 using System.Collections.Generic;
@@ -61,8 +66,6 @@ namespace Server.Items
         private int m_SkillPoints; // Total number of available skill points
         private double m_SkillMaxLevel; // Max any given skill can be set to using the stone.
         private PlayerMobile m_AssignedPlayer;
-
-        private SkillInfo[] skills;
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int SkillPoints
@@ -94,7 +97,6 @@ namespace Server.Items
             Movable = false;
             SkillPoints = 12000; // Change this to change how many points are available on the stone by default. 1 point = 0.1 skill.
             SkillMaxLevel = 100; // Change this to change the maximum value the stone can set a skill to.
-            skills = SkillInfo.Table;
         }
 
         public SkillStone(int skillPoints, double skillMaxLevel) : base( 0x1870 )
@@ -105,7 +107,6 @@ namespace Server.Items
             Movable = false;
             SkillPoints = skillPoints; 
             SkillMaxLevel = skillMaxLevel; 
-            skills = SkillInfo.Table;
         }
 
         public override void OnDoubleClick(Mobile from)
@@ -135,7 +136,7 @@ namespace Server.Items
             }
 
             if( this.AssignedPlayer == (PlayerMobile)from )
-                from.SendGump(new SetSkillsGump(from, this, skills, null));
+                from.SendGump(new SetSkillsGump(from, this, SkillInfo.Table, null));
         }
 
         public SkillStone(Serial serial) : base(serial)
@@ -193,7 +194,7 @@ namespace Server.Items
             AddBackground(0, 0, 550, 550, 2620);// Stone BG: x,y,w,h,imageId
             AddHtml( 0, 15, 550, 25, "<CENTER><BASEFONT COLOR=#FFFF00>Skill Stone</BASEFONT></CENTER>", false, false );
             AddHtml( 0, 30, 550, 25, "<CENTER><BASEFONT COLOR=#FFFF00>Created By: Poolmanjim</BASEFONT></CENTER>", false, false );
-            AddHtml( 0, 45, 550, 25, "<CENTER><BASEFONT COLOR=#FFFF00>Version 0.9.0 Beta</BASEFONT></CENTER>", false, false );
+            AddHtml( 0, 45, 550, 25, "<CENTER><BASEFONT COLOR=#FFFF00>Version 0.9.2 Beta</BASEFONT></CENTER>", false, false );
             AddHtml( 0, 60, 550, 25, skillsRemainingHTML, false, false );
             AddHtml( 50, 90, 400, 60, "<BASEFONT COLOR=#CCCCCC>1 point = 0.1 skill. Click the number area and enter a value up to the maximum skill level supported. Click the button next to the field to set your skill. </BASEFONT>",false, false );
 
@@ -259,7 +260,7 @@ namespace Server.Items
                             newSkillValue = Convert.ToDouble( textEntry.Text );
                             
                         }
-                        catch ( System.Exception e)
+                        catch ( System.Exception )
                         {
                             newSkillValue = 0;
                             m_Player.SendMessage( 2117, String.Format("You cannot set your skill {0} to a value that is not a number.",targetSkill.Name) );
